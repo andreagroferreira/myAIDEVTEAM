@@ -75,7 +75,7 @@ class Project(Base):
     quality_thresholds = Column(JSON, default=dict)  # Coverage, complexity thresholds
     
     # Metadata
-    metadata = Column(JSON, default=dict)  # Flexible metadata storage
+    meta_data = Column(JSON, default=dict)  # Flexible metadata storage
     tags = Column(JSON, default=list)  # Project tags
     
     # Timestamps
@@ -115,7 +115,7 @@ class Project(Base):
             "environment_variables": self.environment_variables,
             "build_commands": self.build_commands,
             "quality_thresholds": self.quality_thresholds,
-            "metadata": self.metadata,
+            "metadata": self.meta_data,
             "tags": self.tags,
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,

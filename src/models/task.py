@@ -93,7 +93,7 @@ class Task(Base):
     error_details = Column(Text)  # Error information if failed
     
     # Metadata
-    metadata = Column(JSON, default=dict)  # Flexible metadata
+    meta_data = Column(JSON, default=dict)  # Flexible metadata
     tags = Column(JSON, default=list)  # Tags for categorization
     
     # Flags
@@ -135,7 +135,7 @@ class Task(Base):
             "result": self.result,
             "artifacts": self.artifacts,
             "error_details": self.error_details,
-            "metadata": self.metadata,
+            "metadata": self.meta_data,
             "tags": self.tags,
             "is_blocking": self.is_blocking,
             "requires_review": self.requires_review,
@@ -168,25 +168,25 @@ class Task(Base):
     def block(self, reason: str):
         """Mark task as blocked"""
         self.status = TaskStatus.BLOCKED
-        if not self.metadata:
-            self.metadata = {}
-        self.metadata["block_reason"] = reason
+        if not self.meta_data:
+            self.meta_data = {}
+        self.meta_data["block_reason"] = reason
     
     def unblock(self):
         """Unblock the task"""
         if self.status == TaskStatus.BLOCKED:
             self.status = TaskStatus.PENDING
-            if self.metadata and "block_reason" in self.metadata:
-                del self.metadata["block_reason"]
+            if self.meta_data and "block_reason" in self.meta_data:
+                del self.meta_data["block_reason"]
     
     def cancel(self, reason: Optional[str] = None):
         """Cancel the task"""
         self.status = TaskStatus.CANCELLED
         self.completed_at = datetime.utcnow()
         if reason:
-            if not self.metadata:
-                self.metadata = {}
-            self.metadata["cancellation_reason"] = reason
+            if not self.meta_data:
+                self.meta_data = {}
+            self.meta_data["cancellation_reason"] = reason
     
     def submit_for_review(self):
         """Submit task for review"""

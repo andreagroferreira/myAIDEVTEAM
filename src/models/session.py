@@ -62,7 +62,7 @@ class Session(Base):
     assigned_to = Column(JSON, default=list)  # List of assigned agents/crews
     
     # Session metadata
-    metadata = Column(JSON, default=dict)  # Flexible metadata storage
+    meta_data = Column(JSON, default=dict)  # Flexible metadata storage
     tags = Column(JSON, default=list)  # Tags for categorization
     
     # Coordination flags
@@ -97,7 +97,7 @@ class Session(Base):
             "estimated_duration": self.estimated_duration,
             "initiated_by": self.initiated_by,
             "assigned_to": self.assigned_to,
-            "metadata": self.metadata,
+            "metadata": self.meta_data,
             "tags": self.tags,
             "requires_coordination": self.requires_coordination,
             "is_emergency": self.is_emergency,
@@ -135,9 +135,9 @@ class Session(Base):
         self.status = SessionStatus.CANCELLED
         self.completed_at = datetime.utcnow()
         if reason:
-            if not self.metadata:
-                self.metadata = {}
-            self.metadata["cancellation_reason"] = reason
+            if not self.meta_data:
+                self.meta_data = {}
+            self.meta_data["cancellation_reason"] = reason
     
     def add_artifact(self, key: str, value: Any):
         """Add an artifact to the session"""

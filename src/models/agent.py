@@ -103,7 +103,7 @@ class Agent(Base):
     tokens_consumed = Column(Integer, default=0)
     
     # Metadata
-    metadata = Column(JSON, default=dict)
+    meta_data = Column(JSON, default=dict)
     configuration = Column(JSON, default=dict)  # Additional configuration
     last_error = Column(Text)
     
@@ -148,7 +148,7 @@ class Agent(Base):
             "cpu_usage_percent": self.cpu_usage_percent,
             "api_calls_made": self.api_calls_made,
             "tokens_consumed": self.tokens_consumed,
-            "metadata": self.metadata,
+            "metadata": self.meta_data,
             "configuration": self.configuration,
             "last_error": self.last_error,
             "created_at": self.created_at.isoformat() if self.created_at else None,
