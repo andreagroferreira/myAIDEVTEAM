@@ -30,6 +30,17 @@ from src.config.logging_config import (
     log_execution_time
 )
 
+from src.config.yaml_loader import (
+    YAMLConfigLoader,
+    config_loader,
+    get_agent_config,
+    get_crew_config,
+    get_project_config,
+    list_available_agents,
+    list_available_crews,
+    list_available_projects
+)
+
 __all__ = [
     # Database
     "init_database",
@@ -55,4 +66,14 @@ __all__ = [
     "get_logger",
     "LoggerMixin",
     "log_execution_time",
+    
+    # YAML Loader
+    "YAMLConfigLoader",
+    "config_loader",
+    "get_agent_config",
+    "get_crew_config",
+    "get_project_config",
+    "list_available_agents",
+    "list_available_crews",
+    "list_available_projects",
 ]
