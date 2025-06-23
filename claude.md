@@ -972,3 +972,9 @@ cfteam maintenance --clear-cache --reset-queues
 - Notion MCP for project management sync
 - Supabase MCP for production data analysis
 - All MCPs should be configured in Claude Code settings before use
+
+### **Development Workflow Rules**
+- **IMPORTANT**: Create a git commit after completing each task/todo item
+- Use descriptive commit messages that explain what was implemented
+- Group related small changes in a single commit
+- Never commit broken or incomplete code
