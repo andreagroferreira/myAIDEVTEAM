@@ -1,0 +1,205 @@
+# Project Configurations for CFTeam Ecosystem
+# Defines all managed projects and their settings
+
+projects:
+  burrow_hub:
+    name: "Burrow Hub CRM"
+    identifier: "burrow_hub"
+    path: "/Users/andreagroferreira/Herd/burrowhub"
+    type: "laravel"
+    status: "active"
+    database:
+      type: "supabase"
+      name: "burrowhub_production"
+    repository:
+      url: "https://github.com/andreagroferreira/burrowhub"
+      branch: "main"
+    technology:
+      primary_language: "php"
+      framework: "Laravel 11"
+      php_version: "8.2"
+      node_version: "18.x"
+    dependencies:
+      backend:
+        - "laravel/framework: ^11.0"
+        - "livewire/livewire: ^3.0"
+        - "spatie/laravel-permission: ^6.0"
+      frontend:
+        - "alpinejs: ^3.0"
+        - "tailwindcss: ^3.0"
+    primary_crews:
+      - backend_development_crew
+      - management_crew
+      - quality_assurance_crew
+    build_commands:
+      install: "composer install && npm install"
+      build: "npm run build"
+      test: "php artisan test"
+      lint: "vendor/bin/pint"
+      analyze: "vendor/bin/phpstan analyse"
+    quality_thresholds:
+      test_coverage: 80
+      phpstan_level: 8
+      complexity_threshold: 10
+    integrations:
+      - flownetwork
+      - goblinledger
+    features:
+      - "Customer Management"
+      - "Sales Pipeline"
+      - "Reporting Dashboard"
+      - "Email Automation"
+    
+  ecommerce:
+    name: "E-commerce Frontend"
+    identifier: "ecommerce"
+    path: "/Users/andreagroferreira/Work/ecommerce"
+    type: "nuxt"
+    status: "active"
+    database:
+      type: "api_driven"
+      api_endpoint: "https://api.burrowhub.com"
+    repository:
+      url: "https://github.com/andreagroferreira/ecommerce"
+      branch: "main"
+    technology:
+      primary_language: "javascript"
+      framework: "Nuxt 3"
+      typescript: true
+      node_version: "18.x"
+    dependencies:
+      frontend:
+        - "nuxt: ^3.0"
+        - "vue: ^3.0"
+        - "vuetify: ^3.0"
+        - "pinia: ^2.0"
+        - "@nuxtjs/tailwindcss: ^6.0"
+    primary_crews:
+      - frontend_development_crew
+      - integration_crew
+    build_commands:
+      install: "pnpm install"
+      dev: "pnpm dev"
+      build: "pnpm build"
+      test: "pnpm test"
+      lint: "pnpm lint"
+      typecheck: "pnpm typecheck"
+    quality_thresholds:
+      test_coverage: 75
+      lighthouse_score: 90
+      bundle_size_kb: 500
+    integrations:
+      - burrow_hub
+      - payment_gateways
+    features:
+      - "Product Catalog"
+      - "Shopping Cart"
+      - "Checkout Process"
+      - "User Authentication"
+      - "Order Tracking"
+    
+  flownetwork:
+    name: "FlowNetwork Integration MS"
+    identifier: "flownetwork"
+    path: "/Users/andreagroferreira/Herd/flownetwork-integration-ms"
+    type: "microservice"
+    status: "active"
+    database:
+      type: "postgresql"
+      name: "flownetwork_db"
+    repository:
+      url: "https://github.com/andreagroferreira/flownetwork-integration-ms"
+      branch: "main"
+    technology:
+      primary_language: "php"
+      framework: "Laravel 11"
+      php_version: "8.2"
+    dependencies:
+      backend:
+        - "laravel/framework: ^11.0"
+        - "guzzlehttp/guzzle: ^7.0"
+        - "league/flysystem-aws-s3-v3: ^3.0"
+    primary_crews:
+      - backend_development_crew
+      - integration_crew
+    build_commands:
+      install: "composer install"
+      test: "php artisan test"
+      lint: "vendor/bin/pint"
+      analyze: "vendor/bin/phpstan analyse"
+    quality_thresholds:
+      test_coverage: 85
+      phpstan_level: 8
+      response_time_ms: 200
+    integrations:
+      - burrow_hub
+      - external_apis
+    features:
+      - "API Gateway"
+      - "Data Transformation"
+      - "Queue Processing"
+      - "Webhook Management"
+    
+  goblinledger:
+    name: "GoblinLedger Primavera MS"
+    identifier: "goblinledger"
+    path: "/Users/andreagroferreira/Herd/goblinledger"
+    type: "microservice"
+    status: "active"
+    database:
+      type: "postgresql"
+      name: "goblinledger_db"
+    repository:
+      url: "https://github.com/andreagroferreira/goblinledger"
+      branch: "main"
+    technology:
+      primary_language: "php"
+      framework: "Laravel 11"
+      php_version: "8.2"
+    dependencies:
+      backend:
+        - "laravel/framework: ^11.0"
+        - "maatwebsite/excel: ^3.1"
+        - "barryvdh/laravel-dompdf: ^2.0"
+    primary_crews:
+      - backend_development_crew
+      - integration_crew
+    build_commands:
+      install: "composer install"
+      test: "php artisan test"
+      lint: "vendor/bin/pint"
+      analyze: "vendor/bin/phpstan analyse"
+    quality_thresholds:
+      test_coverage: 80
+      phpstan_level: 8
+      data_accuracy: 99.9
+    integrations:
+      - burrow_hub
+      - primavera_erp
+    features:
+      - "Financial Integration"
+      - "Invoice Generation"
+      - "Tax Calculation"
+      - "Reporting Suite"
+
+# Ecosystem-wide settings
+ecosystem:
+  coordination_database: "postgresql"
+  communication_layer: "redis"
+  session_persistence: true
+  cross_project_sync: true
+  git_coordination: true
+  deployment:
+    strategy: "rolling"
+    rollback_enabled: true
+    health_check_timeout: 30
+  monitoring:
+    enabled: true
+    metrics_retention_days: 30
+    alert_channels:
+      - slack
+      - email
+  security:
+    api_rate_limiting: true
+    encryption_at_rest: true
+    audit_logging: true

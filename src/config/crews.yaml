@@ -1,0 +1,162 @@
+# Crew Configurations for CFTeam Ecosystem
+# Defines how agents work together in crews
+
+management_crew:
+  name: "Management & Coordination"
+  description: "Strategic oversight and cross-project coordination"
+  agents:
+    - technical_director
+    - project_manager
+    - qa_manager
+  process: hierarchical
+  manager_agent: technical_director
+  verbose: true
+  memory: true
+  planning: true
+  responsibilities:
+    - "Define technical standards and architecture"
+    - "Coordinate cross-project initiatives"
+    - "Manage development priorities"
+    - "Ensure quality standards"
+    - "Handle emergency responses"
+
+backend_development_crew:
+  name: "Backend Development"
+  description: "Laravel backend development and API design"
+  agents:
+    - laravel_architect
+    - module_builder
+    - api_designer
+    - payment_gateway
+  process: sequential
+  verbose: true
+  memory: true
+  responsibilities:
+    - "Design and implement Laravel modules"
+    - "Create RESTful APIs"
+    - "Integrate payment systems"
+    - "Ensure backend performance"
+    - "Maintain code structure"
+
+frontend_development_crew:
+  name: "Frontend Development"
+  description: "Vue.js frontend development and user interface"
+  agents:
+    - vue_architect
+    - module_builder
+    - api_designer
+  process: sequential
+  verbose: true
+  memory: true
+  responsibilities:
+    - "Design Vue.js components"
+    - "Implement user interfaces"
+    - "Manage state with Pinia"
+    - "Ensure responsive design"
+    - "Optimize frontend performance"
+
+integration_crew:
+  name: "Cross-Project Integration"
+  description: "Multi-project coordination and data synchronization"
+  agents:
+    - cross_project_sync
+    - data_consistency
+    - deployment_manager
+    - api_designer
+  process: parallel
+  verbose: true
+  memory: true
+  responsibilities:
+    - "Synchronize project dependencies"
+    - "Ensure data consistency"
+    - "Coordinate deployments"
+    - "Manage API integrations"
+    - "Handle microservice communication"
+
+quality_assurance_crew:
+  name: "Quality Assurance"
+  description: "Code quality, testing, and compliance validation"
+  agents:
+    - code_quality_lead
+    - phpstan_validator
+    - pint_formatter
+    - test_runner
+  process: sequential
+  verbose: true
+  memory: true
+  responsibilities:
+    - "Review code quality"
+    - "Run static analysis"
+    - "Enforce code formatting"
+    - "Execute test suites"
+    - "Generate quality reports"
+
+intelligence_crew:
+  name: "Knowledge & Data Intelligence"
+  description: "Documentation, data analysis, and information management"
+  agents:
+    - context_seven
+    - notion_manager
+    - supabase_intelligence
+  process: parallel
+  verbose: true
+  memory: true
+  responsibilities:
+    - "Provide documentation insights"
+    - "Manage project information"
+    - "Analyze production data"
+    - "Generate business intelligence"
+    - "Maintain knowledge base"
+
+# Workflow-specific crews
+emergency_response_crew:
+  name: "Emergency Response Team"
+  description: "Rapid response for critical issues"
+  agents:
+    - technical_director
+    - laravel_architect
+    - vue_architect
+    - deployment_manager
+  process: parallel
+  verbose: true
+  memory: false
+  priority: critical
+  responsibilities:
+    - "Diagnose critical issues"
+    - "Implement emergency fixes"
+    - "Coordinate rapid deployment"
+    - "Communicate with stakeholders"
+
+feature_development_crew:
+  name: "Feature Development Team"
+  description: "End-to-end feature implementation"
+  agents:
+    - project_manager
+    - laravel_architect
+    - vue_architect
+    - test_runner
+  process: sequential
+  verbose: true
+  memory: true
+  responsibilities:
+    - "Plan feature implementation"
+    - "Develop backend functionality"
+    - "Create frontend interfaces"
+    - "Ensure feature testing"
+
+refactoring_crew:
+  name: "Refactoring Team"
+  description: "Code improvement and technical debt reduction"
+  agents:
+    - code_quality_lead
+    - laravel_architect
+    - phpstan_validator
+    - test_runner
+  process: sequential
+  verbose: true
+  memory: true
+  responsibilities:
+    - "Identify refactoring opportunities"
+    - "Improve code structure"
+    - "Ensure type safety"
+    - "Maintain test coverage"
