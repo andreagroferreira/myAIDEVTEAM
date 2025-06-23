@@ -1,5 +1,6 @@
 """
 Services module for CFTeam ecosystem
+Business logic and coordination services
 """
 
 from src.services.session_manager import SessionManager
